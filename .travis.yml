@@ -1,0 +1,36 @@
+
+# Install the apt prerequisites
+addons:
+  apt:
+    packages:
+      - python-pygments
+
+# Clean and dont fail
+install:
+  - rm -rf public || exit 0
+
+# Build the website
+script:
+  - ./binary/hugo 
+
+# Deploy to GitHub pages
+# deploy:
+#   provider: pages
+#   skip_cleanup: true
+#   local_dir: public
+#   github_token: $GITHUB_TOKEN
+#   on: 
+#     branch: master
+
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name "sarahchen"
+  - git config user.email "eleven.chenxu@gmail.com"
+  - git add .
+  - git commit -m "Update docs"
+  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" master:master
+
+env:
+  global:
+    - GH_REF: github.com/SarahChenBJ/book.git
