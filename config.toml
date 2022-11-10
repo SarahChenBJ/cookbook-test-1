@@ -1,4 +1,4 @@
-baseURL = 'https://sarahchenbj.github.io/'
+baseURL = 'http://example.org/'
 languageCode = 'en-us'
-title = 'Sarah's Cookbook'
+title = 'My New Hugo Site'
 theme = "ananke"
